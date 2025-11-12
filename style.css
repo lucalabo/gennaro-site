@@ -28,7 +28,8 @@ body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    /* Riduciamo il padding laterale su mobile per ottimizzare lo spazio */
+    /* Impostiamo overflow-x: hidden sul contenitore principale per prevenire overflow */
+    overflow-x: hidden; 
     padding: 0 20px; 
 }
 
@@ -129,12 +130,16 @@ main {
     display: flex;
     align-items: center;
     font-size: 1.05em;
+    /* Soluzione 1: Forzare le parole lunghe ad andare a capo */
+    word-break: break-word; 
 }
 
 .contatti-dettaglio p i {
     margin-right: 10px;
     font-size: 1.2em;
     color: var(--accent-color); 
+    /* Soluzione 2: L'icona è un elemento a parte e non dovrebbe forzare l'overflow */
+    flex-shrink: 0;
 }
 
 
@@ -155,7 +160,7 @@ main {
     width: 250px;
     height: 250px;
     object-fit: cover; 
-    object-position: top center; /* Posiziona l'immagine dando priorità all'alto (dove c'è la faccia) */
+    object-position: top center; 
 }
 
 
@@ -212,7 +217,7 @@ footer {
 /* STILI PER TABLET E MOBILE LARGO (sotto i 768px) */
 @media (max-width: 768px) {
     .container {
-        padding: 0 15px; /* Più spazio laterale ridotto */
+        padding: 0 15px; 
     }
     header h1 {
         font-size: 2.2em;
@@ -231,17 +236,17 @@ footer {
     }
 
     #info-medico {
-        flex-direction: column; /* Impila gli elementi */
+        flex-direction: column; 
         text-align: center;
     }
 
     .foto-container {
-        order: 1; /* Sposta la foto in alto */
+        order: 1; 
         margin-bottom: 20px;
     }
 
     #info-medico .testo-info {
-        order: 2; /* Sposta il testo sotto la foto */
+        order: 2; 
     }
 
     #info-medico .testo-info h3 {
@@ -249,7 +254,7 @@ footer {
     }
 
     .foto-container img {
-        width: 180px; /* Riduci leggermente l'immagine */
+        width: 180px; 
         height: 180px;
     }
 
@@ -264,6 +269,11 @@ footer {
 
 /* STILI PER SMARTPHONE (sotto i 480px) */
 @media (max-width: 480px) {
+    /* Assicuriamo che nulla forzi l'overflow */
+    body {
+        overflow-x: hidden;
+    }
+    
     header {
         padding: 30px 0;
     }
@@ -277,7 +287,7 @@ footer {
     }
 
     main {
-        padding: 20px 0; /* Riduci il padding del contenuto principale */
+        padding: 20px 0;
     }
 
     .card {
@@ -286,8 +296,14 @@ footer {
 
     .contatti-dettaglio p {
         font-size: 0.95em;
-        /* Rendi i link tappabili più facilmente */
         padding: 5px 0; 
+        /* Rimuoviamo la flexbox orizzontale e lasciamo che l'icona e il testo si gestiscano come blocco. */
+        display: block; 
+    }
+    
+    .contatti-dettaglio p i {
+        /* Rimuoviamo il flex-shrink specifico per il mobile se usiamo display: block; */
+        margin-right: 5px; /* Riduciamo lo spazio */
     }
     
     .mappa-header {
