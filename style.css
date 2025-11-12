@@ -1,12 +1,12 @@
 /* Stili Generali e Reset */
 :root {
     --primary-color: #2c3e50; /* Blu scuro e professionale */
-    --accent-color: #3498db; /* Azzurro per accenti */
+    --accent-color: #3498db; /* Azzurro per accenti e link */
     --text-color: #34495e; /* Grigio scuro per il testo principale */
     --light-bg: #ecf0f1; /* Sfondo grigio chiaro molto delicato */
     --white: #ffffff;
-    --border-color: #dcdde1; /* Colore del bordo per le card */
-    --shadow-color: rgba(0, 0, 0, 0.08); /* Ombra leggera */
+    --border-color: #dcdde1; 
+    --shadow-color: rgba(0, 0, 0, 0.08); 
 }
 
 * {
@@ -28,17 +28,18 @@ body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 20px;
+    /* Riduciamo il padding laterale su mobile per ottimizzare lo spazio */
+    padding: 0 20px; 
 }
 
 a {
-    color: var(--accent-color); /* Usa il colore accent per i link */
+    color: var(--accent-color); 
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #2980b9; /* Tonalità più scura dell'accent al passaggio del mouse */
+    color: #2980b9; 
 }
 
 /* Header */
@@ -64,7 +65,7 @@ header h2 {
 
 /* Main Content */
 main {
-    flex: 1;
+    flex: 1; 
     padding: 40px 0;
 }
 
@@ -111,7 +112,7 @@ main {
 
 .contatti-dettaglio {
     background-color: var(--light-bg);
-    border-left: 5px solid var(--accent-color); /* Usa accent per il bordo */
+    border-left: 5px solid var(--accent-color); 
     padding: 20px;
     border-radius: 5px;
     margin-top: 25px;
@@ -133,7 +134,7 @@ main {
 .contatti-dettaglio p i {
     margin-right: 10px;
     font-size: 1.2em;
-    color: var(--accent-color); /* Usa accent per le icone */
+    color: var(--accent-color); 
 }
 
 
@@ -148,14 +149,13 @@ main {
 .foto-container img {
     max-width: 100%;
     height: auto;
-    border-radius: 30%;
-    border: 3px solid var(--accent-color); /* Bordo intorno all'immagine */
+    border-radius: 50%;
+    border: 5px solid var(--accent-color);
     box-shadow: 0 8px 20px var(--shadow-color);
     width: 250px;
-    height: 330px;
-    object-fit: cover; /* Assicura che l'immagine copra l'area */
-    object-position: top center; /* Tenta di posizionare la parte superiore al centro */
-    /* Se la faccia è ancora troppo bassa, prova: object-position: top 25%; */
+    height: 250px;
+    object-fit: cover; 
+    object-position: top center; /* Posiziona l'immagine dando priorità all'alto (dove c'è la faccia) */
 }
 
 
@@ -199,7 +199,7 @@ main {
 
 /* Footer */
 footer {
-    background: var(--primary-color); /* Usa primary color per il footer */
+    background: var(--primary-color); 
     color: var(--white);
     text-align: center;
     padding: 25px 0;
@@ -209,7 +209,11 @@ footer {
 }
 
 /* Media Queries per la responsività */
+/* STILI PER TABLET E MOBILE LARGO (sotto i 768px) */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 15px; /* Più spazio laterale ridotto */
+    }
     header h1 {
         font-size: 2.2em;
     }
@@ -227,26 +231,26 @@ footer {
     }
 
     #info-medico {
-        flex-direction: column;
+        flex-direction: column; /* Impila gli elementi */
         text-align: center;
     }
 
+    .foto-container {
+        order: 1; /* Sposta la foto in alto */
+        margin-bottom: 20px;
+    }
+
     #info-medico .testo-info {
-        order: 2;
+        order: 2; /* Sposta il testo sotto la foto */
     }
 
     #info-medico .testo-info h3 {
         text-align: center;
     }
 
-    .foto-container {
-        order: 1;
-        margin-bottom: 20px;
-    }
-
     .foto-container img {
-        width: 200px;
-        height: 200px;
+        width: 180px; /* Riduci leggermente l'immagine */
+        height: 180px;
     }
 
     .contatti-dettaglio {
@@ -258,6 +262,7 @@ footer {
     }
 }
 
+/* STILI PER SMARTPHONE (sotto i 480px) */
 @media (max-width: 480px) {
     header {
         padding: 30px 0;
@@ -271,19 +276,21 @@ footer {
         font-size: 1em;
     }
 
-    .container {
-        padding: 0 15px;
-    }
-
     main {
-        padding: 30px 0;
+        padding: 20px 0; /* Riduci il padding del contenuto principale */
     }
 
     .card {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     .contatti-dettaglio p {
         font-size: 0.95em;
+        /* Rendi i link tappabili più facilmente */
+        padding: 5px 0; 
+    }
+    
+    .mappa-header {
+        padding: 15px 15px;
     }
 }
